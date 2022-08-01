@@ -14,8 +14,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: '1.18.3'
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      - name: Read the version
-        run: echo $VERSION
+      - name: test version
+        run: echo ${{ github.event.release.tag_name }}
+      - name: test version2
+        run: echo ${{ github.ref }}
