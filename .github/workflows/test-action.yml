@@ -18,3 +18,7 @@ jobs:
         run: echo ${{ github.event.release.tag_name }}
       - name: test use version
         run: echo myrepo.jfrog.io/docker/company/go-app/${{ github.event.release.tag_name }}
+      - name: test run makefile commands
+        run: make test
+      - name: test run makefile commands
+        run: make build
