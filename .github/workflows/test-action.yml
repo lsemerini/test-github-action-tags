@@ -16,5 +16,5 @@ jobs:
           go-version: '1.18.3'
       - name: test version
         run: echo ${{ github.event.release.tag_name }}
-      - name: test version2
-        run: echo ${{ github.ref }}
+      - name: test use version
+        run: echo myrepo.jfrog.io/docker/company/go-app/${{ github.event.release.tag_name }}
