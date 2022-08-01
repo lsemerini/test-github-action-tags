@@ -1,0 +1,21 @@
+name: 'release'
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  do-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+      - name: Install go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.18.3'
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - name: test i can read version
+        run: echo ${steps.get_version.outputs.VERSION}
