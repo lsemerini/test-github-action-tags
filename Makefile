@@ -29,3 +29,11 @@ clean:
 .PHONY: test
 test:
 	@go test -v ./...
+
+.PHONY: test-cover
+test-cover:
+	@go test -race -v ./... -coverprofile=coverage.out
+
+.PHONY: check-cover-threshold
+check-cover-threshold:
+	@./cover-check ./coverage.out 55
