@@ -20,5 +20,19 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:
           version: v1.46.2
-      - name: Run unit tests
-        run: make test
+      - name: Install junit reporter
+        run: |
+          wget https://github.com/jstemmer/go-junit-report/releases/download/v2.0.0/go-junit-report-v2.0.0-linux-amd64.tar.gz
+          tar -xvzf go-junit-report-v2.0.0-linux-amd64.tar.gz
+          rm -rf go-junit-report-v2.0.0-linux-amd64.tar.gz
+          mv go-junit-report /usr/local/bin/go-junit-report
+          chmod +x /usr/local/bin/go-junit-report          
+
+      - name: Run unit tests with code coverage
+        run: |
+          make test | go-junit-report -set-exit-code > ./report.xml
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v3
+        if: always() # always run even if the previous step fails
+        with:
+          report_paths: './report.xml'

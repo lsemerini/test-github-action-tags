@@ -16,3 +16,7 @@ type HealthController struct{}
 func (h HealthController) Status(c *gin.Context) {
 	c.String(http.StatusOK, "Working!")
 }
+
+func Test() bool {
+	return true
+}
