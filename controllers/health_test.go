@@ -7,5 +7,5 @@ import (
 )
 
 func TestSomething(t *testing.T) {
-	require.True(t, !Test())
+	require.True(t, Test())
 }
