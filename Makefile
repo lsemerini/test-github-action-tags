@@ -37,3 +37,7 @@ test-cover:
 .PHONY: check-cover-threshold
 check-cover-threshold:
 	@./cover-check ./coverage.out 55
+
+.PHONY: show-cover
+show-cover:
+	@go tool cover -html=coverage.out -o coverage.html

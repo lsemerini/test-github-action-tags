@@ -31,6 +31,13 @@ jobs:
       - name: Run unit tests with code coverage
         run: |
           make test-cover | go-junit-report -set-exit-code > ./report.xml
+      - name: Generate coverage html report
+        run: make show-cover
+      - uses: actions/upload-artifact@v3
+        name: Publish html coverage
+        with:
+          name: coverage-report
+          path: ./coverage.html
       - name: Check test coverage threshold
         if: always() # always run even if the previous step fails
         run: make check-cover-threshold
